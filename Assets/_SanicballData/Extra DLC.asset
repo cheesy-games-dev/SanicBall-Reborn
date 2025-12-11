@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa232453125f26940a65cb63bbbdfe05, type: 3}
+  m_Name: Extra DLC
+  m_EditorClassIdentifier: 
+  stages:
+  - name: Luigi's Circuit
+    id: 7
+    scene:
+      m_AssetGUID: 2e50d5c5b6d93034abd354aa5325bcad
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: 68251497db092874ca5bf6fdd00266c4, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Waluigi's Pinball
+    id: 8
+    scene:
+      m_AssetGUID: 6ce63447c5ea597448f4e70e9d02fd21
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    picture: {fileID: 21300000, guid: eb41900f2b96d3c4da0334bfa42d7c72, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Waluigi's Stadium
+    id: 9
+    scene:
+      m_AssetGUID: 6d0ed505440ef164395bd00eb778977a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: 2b4f2d2030bffea4daaf98c70495398c, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Volcano Valley
+    id: 10
+    scene:
+      m_AssetGUID: ca1b05e9c4043584f9920dc8eeeac98b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: e1713d0acb01b644aa99f550083c85ee, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Peach's Gardens
+    id: 11
+    scene:
+      m_AssetGUID: b48a36bbd6063ff4c834775fb47a6fd6
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    picture: {fileID: 21300000, guid: 46faf6dacb2935e4fb5a17ee6b5e0407, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Volcano Circuit
+    id: 12
+    scene:
+      m_AssetGUID: 36f48ea552a24cd41a95bed3807655bb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: 24476c7530e31404ea66ab85310ed9e4, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Toad Circuit
+    id: 13
+    scene:
+      m_AssetGUID: 78198e5c606eaea4bab72b449bb963a4
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: 5a8968301baebc54c89b59efe9eba69a, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Bowser's Castle
+    id: 14
+    scene:
+      m_AssetGUID: 0d32ce5db893a764a8eeef3b757dfdac
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: f2de3e27b4d42064fbf47e276bf9c8de, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Mario's Course
+    id: 15
+    scene:
+      m_AssetGUID: 8444e6f318e27f848822723f2169e4b3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: 7c8a81c4b26aabf47ac32c1f6c9019fd, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Wario's Stadium
+    id: 16
+    scene:
+      m_AssetGUID: 02d93133ed5ac494c9d4671cebe2aac0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: ee30e9bd48519be4e85982ff7ceb469f, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Mario's Track
+    id: 17
+    scene:
+      m_AssetGUID: 0dbc60ab5d1e3794eada60b0b5f54dfe
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: c2a91ed39b42e2342ad69e676e48b253, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Rainbow Road 2
+    id: 18
+    scene:
+      m_AssetGUID: 1e42a47f9bf0a3f40b135febdf2bca4a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: a14dd66bb12fae1468684323be6ff956, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Sanic Loops
+    id: 19
+    scene:
+      m_AssetGUID: be30effea04ba40c6af99d985f7cc4ee
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: 3c5ebc5a4794db245925b463ad1a4c6c, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Old Green Hill Zone
+    id: 20
+    scene:
+      m_AssetGUID: 587ff0f5eaa3fa740832ba0944257c3c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: b6b22bcc579dd12499b4fbd9424ce7a6, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Wuhu Island
+    id: 21
+    scene:
+      m_AssetGUID: 57c49a558af4d21438d478110d8a803b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: 902a15978cf331e4bb9e9dcdb507c22a, type: 3}
+    overviewPrefab: {fileID: 0}
+  - name: Wuhu Sunset
+    id: 22
+    scene:
+      m_AssetGUID: 76e7907a019c51544adf27b0e28c6f19
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    picture: {fileID: 21300000, guid: aa7a51da646ac4e47a86f1104b179b7b, type: 3}
+    overviewPrefab: {fileID: 0}
+  characters: []
+  characterSpecificMusic:
+    list: []
