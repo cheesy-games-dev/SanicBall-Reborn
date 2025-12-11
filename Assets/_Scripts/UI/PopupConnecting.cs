@@ -10,6 +10,11 @@ namespace Sanicball.UI
         [SerializeField]
         private Image spinner = null;
 
+        public static PopupConnecting instance {
+            get;
+            internal set;
+        }
+
         public void ShowMessage(string text)
         {
             titleField.text = text;
@@ -24,6 +29,10 @@ namespace Sanicball.UI
 
         public void Update(){
             spinner.GetComponent<RectTransform>().anchoredPosition = new Vector2(-titleField.preferredWidth+titleField.preferredWidth/2, spinner.GetComponent<RectTransform>().anchoredPosition.y);
+        }
+
+        private void Start() {
+            instance = this;
         }
     }
 }

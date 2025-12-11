@@ -25,8 +25,6 @@ namespace Sanicball
         public bool startPlaying = false;
         public bool fadeIn = false;
 
-        public Song[] playlist;
-        private Song[] originalPlaylist;
         public AudioSource fastSource;
 
         [System.NonSerialized]
@@ -51,7 +49,7 @@ namespace Sanicball
 
         public void Play()
         {
-            Play(playlist[currentSongID].name);
+            Play(ActiveData.Playlist[currentSongID].name);
         }
 
         public void Next()
@@ -88,8 +86,6 @@ namespace Sanicball
 
         private void Start()
         {
-            playlist = ActiveData.songs.ToArray();
-            originalPlaylist = playlist;
             playerCanvas = Instantiate(playerCanvasPrefab);
             Instantiate(achievementPrefab);
             if (playerCanvasLobbyOffset) 
@@ -100,27 +96,21 @@ namespace Sanicball
             aSource = GetComponent<AudioSource>();
 
             slidePosition = slidePositionMax;
-            ShuffleSongs();
 
             if (ActiveData.ESportsFullyReady)
             {
-                Sanicball.Logic.MatchManager m = FindObjectOfType<Sanicball.Logic.MatchManager>();
+                Sanicball.Logic.MatchManager m = MatchManager.Instance;
                 if (!m.InLobby) {
-                    List<Song> p = playlist.ToList();
-                    Song s = new Song();
-                    s.name = "Skrollex - Bungee Ride";
-                    s.clip = ActiveData.ESportsMusic;
-                    p.Insert(0,s);
-                    playlist = p.ToArray();
+                    ActiveData.Playlist.Insert(0, ActiveData.ESportsMusic);
                 }
             }
 
 
-            if (playlist.Length == 0) {
+            if (ActiveData.Playlist.Count == 0) {
                 gameObject.SetActive(false);
                 return;
             } else {
-                aSource.clip = playlist[0].clip;
+                aSource.clip = ActiveData.Playlist[0];
                 currentSongID = 0;
                 isPlaying = aSource.isPlaying;
             }
@@ -137,7 +127,7 @@ namespace Sanicball
             {
                 fastSource.Stop();
             }
-            raceManager = FindObjectOfType<Sanicball.Logic.RaceManager>();
+            raceManager = RaceManager.Instance;
         }
 
         private void Update()
@@ -165,7 +155,7 @@ namespace Sanicball
             //If it's not playing but supposed to play, change song
             if ((!aSource.isPlaying || GameInput.IsChangingSong() || changeSong) && isPlaying)
             {
-                if (currentSongID < playlist.Length - 1)
+                if (currentSongID < ActiveData.Playlist.Count - 1)
                 {
                     currentSongID++;
                 }
@@ -173,7 +163,7 @@ namespace Sanicball
                 {
                     currentSongID = 0;
                 }
-                aSource.clip = playlist[currentSongID].clip;
+                aSource.clip = ActiveData.Playlist[currentSongID];
                 slidePosition = slidePositionMax;
                 changeSong = false;
                 Play();
@@ -185,13 +175,12 @@ namespace Sanicball
                     MatchPlayer player = raceManager.matchManager.Players.First(p => p.ClientGuid == raceManager.matchManager.LocalClientGuid);
                     
                     if (SceneManager.GetActiveScene().name == "Lobby") {
-                        MatchManager matchManager = FindObjectOfType<MatchManager>();
+                        MatchManager matchManager = MatchManager.Instance;
                         player = matchManager.Players.First(p => p.ClientGuid == matchManager.LocalClientGuid);
                     }
 
                     if (player != null) player.ChangeMusic();
                 } else {
-                    playlist = originalPlaylist;
                     Next();
                 }
                 playerCanvas.Show(ActiveData.GameSettings.characterMusic ? "Character Specific Music - ON" : "Character Specific Music - OFF");
@@ -228,24 +217,5 @@ namespace Sanicball
                 slidePosition = Mathf.Lerp(slidePosition, slidePositionMax, Time.deltaTime * 2);
             }
         }
-
-        public void ShuffleSongs()
-        {
-            //Shuffle playlist using Fisher-Yates algorithm
-            for (int i = playlist.Length; i > 1; i--)
-            {
-                int j = Random.Range(0, i);
-                Song tmp = playlist[j];
-                playlist[j] = playlist[i - 1];
-                playlist[i - 1] = tmp;
-            }
-        }
-    }
-
-    [System.Serializable]
-    public class Song
-    {
-        public string name;
-        public AudioClip clip;
     }
 }

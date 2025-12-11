@@ -8,6 +8,8 @@ using Sanicball.UI;
 using SanicballCore;
 using SanicballCore.MatchMessages;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 
 namespace Sanicball.Logic
 {
@@ -94,7 +96,7 @@ namespace Sanicball.Logic
         private const int NET_UPDATES_PER_SECOND = 40;
 
         public bool mobilePause;
-
+        public static MatchManager Instance;
         #region Properties
 
         /// <summary>
@@ -379,6 +381,7 @@ namespace Sanicball.Logic
 
         private void Start()
         {
+            Instance = this;
             DontDestroyOnLoad(gameObject);
 
             //A messenger should be created by now! Time to create some message listeners
@@ -400,6 +403,8 @@ namespace Sanicball.Logic
             //Create this client
             myGuid = Guid.NewGuid();
             messenger.SendMessage(new ClientJoinedMessage(myGuid, ActiveData.GameSettings.nickname));
+
+            SceneManager.sceneLoaded += (_, _) => OnSceneWasLoaded();
         }
 
         private void LocalChatMessageSent(object sender, UI.ChatMessageArgs args)
@@ -432,7 +437,7 @@ namespace Sanicball.Logic
                 }
                 else
                 {
-                    var menu = FindObjectOfType<UI.PauseMenu>();
+                    var menu = PauseMenu.Instance;
                     if (menu)
                         Destroy(menu.gameObject);
                 }
@@ -508,6 +513,7 @@ namespace Sanicball.Logic
 
             loadingStage = false;
             loadingLobby = true;
+            inLobby = true;
             UnityEngine.SceneManagement.SceneManager.LoadScene(lobbySceneName);
         }
 
@@ -517,18 +523,18 @@ namespace Sanicball.Logic
 
             loadingStage = true;
             loadingLobby = false;
-
+            inLobby = false;
             foreach (var p in Players)
             {
                 p.ReadyToRace = false;
             }
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene(targetStage.sceneName);
+            Addressables.LoadSceneAsync(targetStage.scene);
             ;
         }
 
         //Check if we were loading the lobby or the race
-        private void OnLevelWasLoaded(int level)
+        private void OnSceneWasLoaded()
         {
             if (loadingLobby)
             {
@@ -583,8 +589,8 @@ namespace Sanicball.Logic
             {
                 yield return null;
 
-                FindObjectOfType<UI.PopupHandler>().OpenPopup(disconnectedPopupPrefab);
-                FindObjectOfType<UI.PopupDisconnected>().Reason = reason;
+                PopupHandler.Instance.OpenPopup(disconnectedPopupPrefab);
+                PopupDisconnected.Instance.Reason = reason;
             }
 
             Destroy(gameObject);

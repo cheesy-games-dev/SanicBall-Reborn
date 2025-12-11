@@ -22,9 +22,10 @@ namespace Sanicball.UI
         public static bool GamePaused { get { return GameObject.FindWithTag(pauseTag); } }
 
         public bool OnlineMode { get; set; }
-
+        public static PauseMenu Instance;
         private void Awake()
         {
+            Instance = this;
             if (Cursor.lockState == CursorLockMode.Locked)
             {
                 mouseWasLocked = true;
@@ -84,7 +85,7 @@ namespace Sanicball.UI
 
         public void BackToLobby()
         {
-            var matchManager = FindObjectOfType<MatchManager>();
+            var matchManager = MatchManager.Instance;
             if (matchManager)
             {
                 matchManager.RequestLoadLobby();
@@ -92,20 +93,20 @@ namespace Sanicball.UI
             }
             else
             {
-                Debug.LogError("Cannot return to lobby: no match manager found to handle the request. Something is broken!");
+                Debug.LogError("Cannot return to lobby: no match Instance found to handle the request. Something is broken!");
             }
         }
 
         public void QuitMatch()
         {
-            var matchManager = FindObjectOfType<MatchManager>();
+            var matchManager = MatchManager.Instance;
             if (matchManager)
             {
                 matchManager.QuitMatch();
             }
             else
             {
-                //Backup solution in case the match manager bugs out for whatever reason
+                //Backup solution in case the match Instance bugs out for whatever reason
                 //Why would it ever bug out? I have no clue
                 SceneManager.LoadScene("Menu");
             }

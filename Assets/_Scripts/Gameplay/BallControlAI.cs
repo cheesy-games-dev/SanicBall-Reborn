@@ -35,7 +35,7 @@ namespace Sanicball.Gameplay
         private void Start()
         {
             ball = GetComponent<Ball>();
-            //Find AI skill level from race manager
+            //Find AI skill level from race Instance
             RaceManager raceManager = FindObjectOfType<RaceManager>();
             if (raceManager)
             {
@@ -68,7 +68,7 @@ namespace Sanicball.Gameplay
             ball.Brake = false;
             if (target)
             {
-                Vector3 velocity = GetComponent<Rigidbody>().velocity;
+                Vector3 velocity = GetComponent<Rigidbody>().linearVelocity;
                 Quaternion towardsVelocity = (velocity != Vector3.zero) ? Quaternion.LookRotation(velocity) : Quaternion.LookRotation(target.transform.position);
 
                 Ray ray = new Ray(transform.position, towardsVelocity * Vector3.forward);

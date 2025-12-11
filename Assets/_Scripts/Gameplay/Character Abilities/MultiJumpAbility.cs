@@ -15,9 +15,9 @@ public class MultiJumpAbility : MonoBehaviour, IAbilityJumpOverride {
     public void Jump(Ball ball, bool hold) {
         if (ball.canMove) {
             if ((ball.grounded || remainingJumps > 0) && !hold) {
-                float scalar = Vector3.Dot((-ball.gravDir).normalized, ball.rb.velocity.normalized);
+                float scalar = Vector3.Dot((-ball.gravDir).normalized, ball.rb.linearVelocity.normalized);
                 if (scalar < 0)
-                    ball.rb.velocity -= (-ball.gravDir) * scalar * ball.rb.velocity.magnitude;
+                    ball.rb.linearVelocity -= (-ball.gravDir) * scalar * ball.rb.linearVelocity.magnitude;
 
                 ball.rb.AddForce(ball.Up * ball.characterStats.jumpHeight, ForceMode.Impulse);
                 if (ball.sounds.Jump != null) {

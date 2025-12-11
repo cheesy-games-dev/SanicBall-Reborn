@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using Sanicball.Data;
 using Sanicball.Gameplay;
 using SanicballCore;
@@ -90,7 +92,7 @@ namespace Sanicball.Logic
         public ControlType CtrlType { get { return ball.CtrlType; } }
         public int Character { get { return ball.CharacterId; } }
         public Transform Transform { get { return ball.transform; } }
-        public float Speed { get { return ball.GetComponent<Rigidbody>().velocity.magnitude; } }
+        public float Speed { get { return ball.GetComponent<Rigidbody>().linearVelocity.magnitude; } }
         public IBallCamera Camera { get { return ballCamera; } }
         public Powerup[] Powerups { get { return ball.powerups; } }
 
@@ -105,9 +107,10 @@ namespace Sanicball.Logic
         public bool LapRecordsEnabled { get; set; }
         public int Position { get; set; }
         public Checkpoint NextCheckpoint { get { return nextCheckpoint; } }
-
+        public static List<RacePlayer> Instances = new();
         public RacePlayer(Ball ball, MatchMessenger matchMessenger, MatchPlayer associatedMatchPlayer)
         {
+            Instances.Add(this);
             sr = StageReferences.Active;
 
             this.matchMessenger = matchMessenger;
@@ -279,7 +282,7 @@ namespace Sanicball.Logic
                 {
 					CharacterTier tier = ActiveData.Characters[Character].tier;
                     string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-                    int stage = ActiveData.Stages.Where(a => a.sceneName == sceneName).First().id;
+                    int stage = ActiveData.Stages.Where(a => a.scene.SubObjectName == sceneName).First().id;
 
                     ActiveData.RaceRecords.Add(new RaceRecord(
 						tier,
@@ -317,7 +320,7 @@ namespace Sanicball.Logic
             }
 
             ball.transform.position = sr.checkpoints[currentCheckpointIndex].GetRespawnPoint() + Vector3.up * ball.transform.localScale.x * 0.5f;
-            ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            ball.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             if (ballCamera != null)
             {
@@ -380,16 +383,7 @@ namespace Sanicball.Logic
         }
 		
 		public static RacePlayer GetByBall(Ball referenceBall) {
-			object[] gameobjects = GameObject.FindSceneObjectsOfType(typeof(GameObject));
-			foreach (object obj in gameobjects) {
-				RacePlayer player = ((GameObject) obj).GetComponent<RacePlayer>() as RacePlayer;
-				if(player != null) {
-					if(player.ball == referenceBall){
-						return player;
-					}
-				}
-			}
-			return null;
+            return Instances.Find(x=>x.ball==referenceBall);
 		}
     }
 }

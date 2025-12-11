@@ -1,4 +1,5 @@
 ﻿using Lidgren.Network;
+using Sanicball.UI;
 using SanicballCore;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace Sanicball.Logic
 {
     public class MatchStarter : MonoBehaviour
     {
+        public static MatchStarter Instance;
         public const string APP_ID = "Sanicball";
 
         [SerializeField]
@@ -19,7 +21,9 @@ namespace Sanicball.Logic
 
         //NetClient for when joining online matches
         private NetClient joiningClient;
-
+        private void Awake() {
+            Instance = this;
+        }
         private void Update()
         {
             if (joiningClient != null)
@@ -132,7 +136,7 @@ namespace Sanicball.Logic
 
             popupHandler.OpenPopup(connectingPopupPrefab);
 
-            activeConnectingPopup = FindObjectOfType<UI.PopupConnecting>();
+            activeConnectingPopup = PopupConnecting.instance;
         }
 
         //Called when succesfully connected to a server

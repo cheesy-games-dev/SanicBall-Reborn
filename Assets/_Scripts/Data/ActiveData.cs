@@ -5,13 +5,14 @@ using System.IO;
 using Newtonsoft.Json;
 using SanicballCore;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Sanicball.Data
 {
-    public class ActiveData : MonoBehaviour, ISerializationCallbackReceiver
-    {
+    public class ActiveData : MonoBehaviour, ISerializationCallbackReceiver {
         #region Fields
 
         public List<RaceRecord> raceRecords = new List<RaceRecord>();
@@ -27,11 +28,13 @@ namespace Sanicball.Data
 
         //This data is set from the editor and remains constant
         [Header("Static data")]
-        [SerializeField]
-        private StageData[] stages;
+        private List<StageData> stages {
+            get; set;
+        } = new();
 
-        [SerializeField]
-        private CharacterData[] characters;
+        private List<CharacterData> characters { 
+            get; set;
+        } = new();
 
         [SerializeField]
         private GameJoltInfo gameJoltInfo;
@@ -65,8 +68,8 @@ namespace Sanicball.Data
         public static MatchSettings MatchSettings { get { return instance.matchSettings; } set { instance.matchSettings = value; } }
         public static List<RaceRecord> RaceRecords { get { return instance.raceRecords; } }
 
-        public static StageData[] Stages { get { return instance.stages; } }
-        public static CharacterData[] Characters { get { return instance.characters; } }
+        public static StageData[] Stages { get { return instance.stages.ToArray(); } }
+        public static CharacterData[] Characters { get { return instance.characters.ToArray(); } }
         public static GameJoltInfo GameJoltInfo { get { return instance.gameJoltInfo; } }
         public static GameObject ChristmasHat { get { return instance.christmasHat; } }
         public static GameObject HalloweenHat { get { return instance.halloweenHat; } }
@@ -82,7 +85,7 @@ namespace Sanicball.Data
         //public static Song[] KhumKhumMusic { get { return instance.khumkhumMusic; } },
         //public static Song[] MattMusic { get { return instance.mattMusic; } }
 
-        public static List<Song> songs = new List<Song>();
+        public static List<AudioClip> Playlist { get; internal set; } = new List<AudioClip>();
         public static ActiveData singleton;
 
         public static bool ESportsFullyReady {
@@ -90,7 +93,7 @@ namespace Sanicball.Data
                 bool possible = false;
                 if (GameSettings.eSportsReady)
                 {
-                    Sanicball.Logic.MatchManager m = FindObjectOfType<Sanicball.Logic.MatchManager>();
+                    Sanicball.Logic.MatchManager m = Logic.MatchManager.Instance;
                     if (m)
                     {
                         var players = m.Players;
@@ -116,8 +119,6 @@ namespace Sanicball.Data
 
         #region Unity functions
 
-        //Make sure there is never more than one GameData object
-        [Obsolete]
         private void Awake()
         {
             if (instance == null)
@@ -131,63 +132,35 @@ namespace Sanicball.Data
                 return; // dont initialize anything
             }
 
-            // Initialize playlist
-            string path = Path.Join(Application.dataPath, "Music");
-            print(path); //here
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            foreach (string filename in Directory.GetFiles(path))
-            {
-                print(filename); //here
-                if (!filename.EndsWith(".meta"))
-                    StartCoroutine(AddAudioToPlaylist(filename));
-            }
-
+            LoadAssets();
 
             SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => {
                 if (scene.buildIndex == 1) { // Menu scene
-                    if (DateTime.Now.Month >= 6 && DateTime.Now.Month <= 7) {
+                    if (DateTime.Now.Month is 6 or 7) {
                         SceneManager.LoadScene("Menu_Sonic1");
                     }
                 }
             };
         }
 
-        [Obsolete]
-        private IEnumerator AddAudioToPlaylist(string filename)
-        {
-            WWW request = GetAudioFromFile(filename);
-            yield return request;
-
-            
-            string name = Path.GetFileNameWithoutExtension(filename);
-            var tagfile = TagLib.File.Create(filename);
-
-            if (tagfile.Tag.Title != null) {
-                name = tagfile.Tag.Title;
-
-                if (tagfile.Tag.Performers.Length > 0)
-                    name = tagfile.Tag.JoinedPerformers + " - " + name;
-            }
-
-            AudioClip audioClip = request.GetAudioClip();
-            audioClip.name = name;
-
-            Song song = new Song();
-            song.name = name;
-            song.clip = audioClip;
-
-            songs.Add(song);
+        private async void LoadAssets() {
+            stages.Clear();
+            characters.Clear();
+            Playlist.Clear();
+            await Addressables.LoadAssetsAsync<AudioClip>("default").Task;
+            await Addressables.LoadAssetsAsync<Texture2D>("default").Task;
+            await Addressables.LoadAssetsAsync<Mesh>("default").Task;
+            await Addressables.LoadAssetsAsync<GameObject>("default").Task;
+            await Addressables.LoadAssetsAsync<Shader>("default").Task;
+            await Addressables.LoadAssetsAsync<DynamicData>("default", OnLoadDynamicData).Task;
         }
 
-        [Obsolete]
-        private WWW GetAudioFromFile(string filepath)
-        {
-            WWW request = new WWW(filepath);
-            return request;
+        private void OnLoadDynamicData(DynamicData data) {
+            dynamicDatas.Add(data);
+            stages.AddRange(data.stages);
+            characters.AddRange(data.characters);
+            Playlist.AddRange(data.songs);    
         }
-
        
 
         private void OnEnable()
@@ -274,7 +247,7 @@ namespace Sanicball.Data
             OnAfterDeserialize();
         }
         public void OnAfterDeserialize() {
-            characterDataInEditor = characters;
+            characterDataInEditor = characters.ToArray();
         }
     }
 }

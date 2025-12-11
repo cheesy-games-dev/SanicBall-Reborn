@@ -158,7 +158,7 @@ namespace Sanicball.UI
             {
 				CharacterTier tier = ActiveData.Characters[targetPlayer.Character].tier;
                 string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-                int stage = ActiveData.Stages.Where(a => a.sceneName == sceneName).First().id;
+                int stage = ActiveData.Stages.Where(a => a.scene.SubObjectName == sceneName).First().id;
 
                 float time = (float)e.CurrentLapTime.TotalSeconds;
 

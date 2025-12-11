@@ -43,7 +43,7 @@ namespace Sanicball.UI
             }
             else
             {
-                Debug.LogWarning("Game manager not found - players cannot be added");
+                Debug.LogWarning("Game Instance not found - players cannot be added");
             }
 
             UpdateHelpText();
@@ -92,7 +92,7 @@ namespace Sanicball.UI
         public void CreatePlayerForControlType(ControlType ctrlType, int character)
         {
             manager.RequestPlayerJoin(ctrlType, character);
-            //var newPlayer = manager.CreatePlayer(ctrlType.ToString(), ctrlType, character);
+            //var newPlayer = Instance.CreatePlayer(ctrlType.ToString(), ctrlType, character);
             //return newPlayer;
         }
 

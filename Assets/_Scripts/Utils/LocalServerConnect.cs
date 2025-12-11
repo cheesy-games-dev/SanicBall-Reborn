@@ -36,6 +36,7 @@ public class LocalServerConnect : MonoBehaviour {
 				return true;
 			}
 		}catch(SocketException e){
+			Debug.LogException(e);
 			return false;
 		}
 	}

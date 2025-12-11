@@ -15,7 +15,7 @@ public class PowerupLightningBoltAction : MonoBehaviour {
 			//Update other users' view
 			MatchManager manager = GameObject.FindObjectOfType(typeof(MatchManager)) as MatchManager;
 			if(manager != null) {
-				Debug.Log("MATCH MANAGER(manager) FOUND!");
+				Debug.Log("MATCH MANAGER(Instance) FOUND!");
 				MatchPlayer actualPlayer = null;
 				foreach(MatchPlayer player in manager.Players) {
 					if(player.BallObject == user) {

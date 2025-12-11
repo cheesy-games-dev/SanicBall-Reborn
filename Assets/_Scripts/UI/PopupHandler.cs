@@ -4,6 +4,7 @@ namespace Sanicball.UI
 {
     public class PopupHandler : MonoBehaviour
     {
+        public static PopupHandler Instance;
         public CanvasGroup groupDisabledOnPopup;
         public Transform targetParent;
         private Popup activePopup;
@@ -62,6 +63,7 @@ namespace Sanicball.UI
 
         private void Start()
         {
+            Instance = this;
         }
 
         private void Update()

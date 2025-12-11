@@ -25,7 +25,7 @@ namespace Sanicball.Gameplay
         {
             if (!tr.enabled) return;
 
-            float spd = Mathf.Max(0, GetComponent<Rigidbody>().velocity.magnitude - 60);
+            float spd = Mathf.Max(0, GetComponent<Rigidbody>().linearVelocity.magnitude - 60);
             tr.time = Mathf.Clamp(spd / 20, 0, 5);
 			if(changeWithSize) {
 				tr.startWidth = Mathf.Clamp(spd / 80, 0, size*0.8f);

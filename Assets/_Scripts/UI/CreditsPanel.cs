@@ -20,8 +20,8 @@ namespace Sanicball.UI {
 			characterList.text = string.Join ("\n", characterText.ToArray ());
 
 			var tracksText = new List<string> ();
-			var tracks = musicPlayerPrefab.playlist;
-			foreach (Song s in tracks) 
+			var tracks = ActiveData.Playlist;
+			foreach (AudioClip s in tracks) 
 			{
 				tracksText.Add ("<b>" + s.name + "</b>");
 			}

@@ -147,6 +147,11 @@ namespace Sanicball.Logic
             }
         }
 
+        public static RaceManager Instance {
+            get;
+            internal set;
+        }
+
         private void Countdown_OnCountdownFinished(object sender, System.EventArgs e)
         {
             CurrentState = RaceState.Racing;
@@ -154,6 +159,7 @@ namespace Sanicball.Logic
 
         public void Init(MatchSettings settings, MatchManager matchManager, MatchMessenger messenger, bool raceIsInProgress)
         {
+            Instance = this;
             this.settings = settings;
             this.matchManager = matchManager;
             this.messenger = messenger;
@@ -390,7 +396,7 @@ namespace Sanicball.Logic
         private void OnDestroy()
         {
             //ALL listeners created in Init() should be removed from the messenger here
-            //Otherwise the race manager won't get destroyed properly
+            //Otherwise the race Instance won't get destroyed properly
             messenger.RemoveListener<StartRaceMessage>(StartRaceCallback);
             messenger.RemoveListener<ClientLeftMessage>(ClientLeftCallback);
             messenger.RemoveListener<DoneRacingMessage>(DoneRacingCallback);

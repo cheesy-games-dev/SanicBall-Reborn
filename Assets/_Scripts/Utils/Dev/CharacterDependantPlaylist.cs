@@ -13,7 +13,7 @@ public class CharacterDependantPlaylist {
     [HideInInspector]
     public string name;
     public int characterId;
-    public Song[] playlist;
+    public AudioClip[] playlist;
 
     public void RefreshValues() {
         Sanicball.Data.CharacterData character = null;
@@ -22,9 +22,9 @@ public class CharacterDependantPlaylist {
             character = ActiveData.characterDataInEditor[characterId];
         } catch (IndexOutOfRangeException) { }
           catch (ArgumentOutOfRangeException) { }
-          catch (NullReferenceException) { name = "Character ID #" + characterId + " (" + playlist.Length + " songs)"; return; }
+          catch (NullReferenceException) { name = "Character ID #" + characterId + " (" + playlist.Length + " Playlist)"; return; }
 
-        if (character != null) name = character.name + " ("+playlist.Length+" songs)";
+        if (character != null) name = character.name + " ("+playlist.Length+" Playlist)";
         else name = "UNKNOWN CHARACTER ID";
     }
 }

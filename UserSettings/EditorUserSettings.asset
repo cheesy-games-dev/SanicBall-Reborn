@@ -6,31 +6,31 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedSceneGuid-0:
-      value: 555504030100590e595a5c2716720944454e4d28287876352f7e4a6bbbb76339
-      flags: 0
-    RecentlyUsedSceneGuid-1:
-      value: 560657525c545c0e550f0a7614710e44454f1c7e7b7077617d2d4532bab0673a
-      flags: 0
-    RecentlyUsedSceneGuid-2:
-      value: 5254005404015e5d540c0a721170594446154979792e2332292f4f31e1e16039
-      flags: 0
-    RecentlyUsedSceneGuid-3:
-      value: 5303505f56045a08080a592313770644154e1c7e7a7f7733282b1861e3e13768
-      flags: 0
-    RecentlyUsedSceneGuid-4:
-      value: 01050c0756030b5909585c7443255944154f4b7e7b7f73362f7d4a32b4e6306e
-      flags: 0
-    RecentlyUsedSceneGuid-5:
       value: 5a530d515304510d540b0a2341725e44444f1b7b782a7e342b7b4c62bab7636f
       flags: 0
-    RecentlyUsedSceneGuid-6:
+    RecentlyUsedSceneGuid-1:
       value: 570405535d030f0955080a704222064440154073792d2060297d4864e6b03061
       flags: 0
-    RecentlyUsedSceneGuid-7:
+    RecentlyUsedSceneGuid-2:
       value: 0054555754565e580c575e751420074415161a7d2d7176662928486ae1b8606b
       flags: 0
-    RecentlyUsedSceneGuid-8:
+    RecentlyUsedSceneGuid-3:
       value: 0000515655545909080d5c2147700f44434f4c2c2d7b7463282f4c65b4e1353e
+      flags: 0
+    RecentlyUsedSceneGuid-4:
+      value: 02060c5007055b0b540b557411215a44154f1e2e78712533792d4f65e4b4353b
+      flags: 0
+    RecentlyUsedSceneGuid-5:
+      value: 5b080554070d0b0a5b5b5a7149255a44444f4d2f2a2e76367b2d4b37b1e2626e
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 07550704075759020e0b5d2316730c44474e4a2b287877347c704431b7e16d60
+      flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 00075200530350595b0f592612270b44141519722e2c2267292b1835b1b5323e
+      flags: 0
+    RecentlyUsedSceneGuid-8:
+      value: 0103565e04575103555b0e7013770f444f4f4d2c292a70332b7d4962b7b63168
       flags: 0
     RecentlyUsedSceneGuid-9:
       value: 5709055654530f03095b587b147b0c44474f4e7c7f797635292a4a6bb3b5626a
@@ -77,6 +77,9 @@ EditorUserSettings:
     UnityRemoteDevice:
       value: 225f4d46245b0d4902070862342649191512
       flags: 0
+    lightmappingBakingProfile:
+      value: 51
+      flags: 0
     lightmappingDeviceAndPlatform:
       value: 53
       flags: 0
@@ -99,3 +102,4 @@ EditorUserSettings:
   m_VCAllowAsyncUpdate: 0
   m_VCScanLocalPackagesOnConnect: 1
   m_ArtifactGarbageCollection: 1
+  m_CompressAssetsOnImport: 1

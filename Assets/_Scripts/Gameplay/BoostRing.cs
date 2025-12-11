@@ -22,7 +22,7 @@ public class BoostRing : MonoBehaviour {
 		var bc = other.GetComponent<Ball>();
 		if (bc != null) {
 			bc.rb.angularVelocity = Vector3.zero;
-			bc.rb.velocity = dir * speedMultiplier;
+			bc.rb.linearVelocity = dir * speedMultiplier;
 			bc.rb.useGravity = false;
 			bc.canMove = false;
 		}

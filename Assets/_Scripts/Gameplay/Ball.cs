@@ -186,9 +186,9 @@ namespace Sanicball.Gameplay
             }
             if(canMove) { //possible movement section
                 if (grounded && !hold) {
-                    float scalar = Vector3.Dot((-gravDir).normalized, rb.velocity.normalized);
+                    float scalar = Vector3.Dot((-gravDir).normalized, rb.linearVelocity.normalized);
                     if (scalar < 0)
-                        rb.velocity -= (-gravDir) * scalar * rb.velocity.magnitude;
+                        rb.linearVelocity -= (-gravDir) * scalar * rb.linearVelocity.magnitude;
                     //if(rb.velocity.y < 0) rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
 
@@ -576,7 +576,7 @@ namespace Sanicball.Gameplay
             if (grounded)
             {
                 float rollSpd = Mathf.Clamp(rb.angularVelocity.magnitude / 230, 0, 16);
-                float vel = (-128f + rb.velocity.magnitude) / 256; //Start at 128 fph, end at 256
+                float vel = (-128f + rb.linearVelocity.magnitude) / 256; //Start at 128 fph, end at 256
 
                 vel = Mathf.Clamp(vel, 0, 1);
                 if (sounds.Roll != null)

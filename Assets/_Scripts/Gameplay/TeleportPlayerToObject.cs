@@ -11,7 +11,7 @@ public class TeleportPlayerToObject : MonoBehaviour {
 		var bc = other.GetComponent<Ball>();
         if (bc != null) {
 			bc.rb.angularVelocity = Vector3.zero;
-			bc.rb.velocity = Vector3.zero;
+			bc.rb.linearVelocity = Vector3.zero;
 		}
 	}
 }

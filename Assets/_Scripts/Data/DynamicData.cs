@@ -1,15 +1,15 @@
+using Sanicball;
 using Sanicball.Data;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Dynamic Data", menuName = "Sanicball/Dynamic Data", order = 100)]
 public class DynamicData : ScriptableObject
 {
-    [SerializeField]
-    private StageData[] stages;
+    public StageData[] stages;
 
-    [SerializeField]
-    private CharacterData[] characters;
+    public CharacterData[] characters;
 
-    [SerializeField]
-    private CharacterDependantPlaylists characterSpecificMusic;
+    public CharacterDependantPlaylists characterSpecificMusic;
+
+    public AudioClip[] songs;
 }
