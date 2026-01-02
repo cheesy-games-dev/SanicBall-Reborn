@@ -9,7 +9,7 @@ public class Transition {
     public int stayTime;
 }
 
-public class CreditsManager : MonoBehaviour {
+public class CreditsManager : EntityBehaviour {
     public int startDelaySeconds = 1;
     public int endDelaySeconds = 1;
     public string menuScene = "Menu_Sonic1";
@@ -46,13 +46,13 @@ public class CreditsManager : MonoBehaviour {
         SceneManager.LoadScene(menuScene);
     }
 
-    void Update() {
+    public override void OnUpdate() {
         if(Input.GetKeyDown(KeyCode.Escape)) {
             StartCoroutine(UserEnded());
         }
     }
 
-    void FixedUpdate() {
+    public override void OnFixedUpdate() {
         if (transitionIndex >= transitionElements.Length) return;
         if(fixedUpdateLoops >= transitionElements[transitionIndex].stayTime) {
             StartCoroutine(ShowTransition());

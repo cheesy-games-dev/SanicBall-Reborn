@@ -9,8 +9,6 @@ public class GenesisFade : MonoBehaviour {
         if (unfadeOnStart) StartCoroutine(Unfade());
     }
 
-    void Update() {}
-
     public IEnumerator Unfade() {
         fadeSpeed = Mathf.Abs(fadeSpeed);
         return FadingLoop();

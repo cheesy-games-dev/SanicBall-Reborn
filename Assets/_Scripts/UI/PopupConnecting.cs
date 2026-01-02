@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
-    public class PopupConnecting : MonoBehaviour
+    public class PopupConnecting : EntityBehaviour
     {
         [SerializeField]
         private Text titleField = null;
@@ -27,7 +27,7 @@ namespace Sanicball.UI
             spinner.enabled = spin;
         }
 
-        public void Update(){
+        public override void OnUpdate(){
             spinner.GetComponent<RectTransform>().anchoredPosition = new Vector2(-titleField.preferredWidth+titleField.preferredWidth/2, spinner.GetComponent<RectTransform>().anchoredPosition.y);
         }
 

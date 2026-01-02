@@ -5,7 +5,7 @@ namespace Sanicball.Gameplay
 {
     [RequireComponent(typeof(TrailRenderer))]
     [RequireComponent(typeof(Rigidbody))]
-    public class SpeedTrail : MonoBehaviour
+    public class SpeedTrail : EntityBehaviour
     {
 		[System.NonSerialized]
         public TrailRenderer tr;
@@ -21,11 +21,11 @@ namespace Sanicball.Gameplay
             tr.enabled = ActiveData.GameSettings.trails;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (!tr.enabled) return;
 
-            float spd = Mathf.Max(0, GetComponent<Rigidbody>().linearVelocity.magnitude - 60);
+            float spd = Mathf.Max(0, GetComponent<Rigidbody>().velocity.magnitude - 60);
             tr.time = Mathf.Clamp(spd / 20, 0, 5);
 			if(changeWithSize) {
 				tr.startWidth = Mathf.Clamp(spd / 80, 0, size*0.8f);

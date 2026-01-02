@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Sanicball.Gameplay
 {
-    public class PivotCamera : MonoBehaviour, IBallCamera
+    public class PivotCamera : EntityBehaviour, IBallCamera
     {
         public Rigidbody Target { get; set; }
         public Camera AttachedCamera { get { return attachedCamera; } }
@@ -60,7 +60,7 @@ namespace Sanicball.Gameplay
             }
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             var bci = Target.GetComponent<BallControlInput>();
             if (bci)
@@ -138,7 +138,9 @@ namespace Sanicball.Gameplay
                 Vector3.down);
 
             //var f = cross == Vector3.zero ? AttachedCamera.transform.forward : cross;
-            
+
+            if (Target.GetComponent<Ball>().gravDir == Vector3.zero)
+                return;
             var newRot = Quaternion.LookRotation(cross, -Target.GetComponent<Ball>().gravDir);
             
             
@@ -150,7 +152,7 @@ namespace Sanicball.Gameplay
             //TODO: fix weird rotation jump after entering a trigger
         }
 
-        private void LateUpdate()
+        public override void OnLateUpdate()
         {
             if (Target == null)
             {
@@ -168,7 +170,7 @@ namespace Sanicball.Gameplay
             attachedCamera.transform.position = transform.TransformPoint(targetPoint);
 
             //Set camera FOV to get higher with more velocity
-            AttachedCamera.fieldOfView = Mathf.Lerp(AttachedCamera.fieldOfView, Mathf.Min(60f + (Target.linearVelocity.magnitude), 100f), Time.deltaTime * 4);
+            AttachedCamera.fieldOfView = Mathf.Lerp(AttachedCamera.fieldOfView, Mathf.Min(60f + (Target.velocity.magnitude), 100f), Time.deltaTime * 4);
         }
 
         private void OnDestroy()

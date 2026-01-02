@@ -5,14 +5,14 @@ using Sanicball.Logic;
 using Sanicball.Gameplay;
 using UnityEngine;
 
-public class OneMinuteHelp : MonoBehaviour {
+public class OneMinuteHelp : EntityBehaviour {
 	private RaceManager manager;
 	
 	void Start() {
 		manager = RaceManager.Instance;
 	}
 	
-	void Update() {
+	public override void OnUpdate() {
 		if(manager != null) {
 			if(manager.RaceTime.TotalSeconds >= 5) {
                 GameObject gameobject = GameObject.Find("1min Help");

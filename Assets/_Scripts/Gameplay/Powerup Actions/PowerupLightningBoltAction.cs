@@ -35,9 +35,7 @@ public class PowerupLightningBoltAction : MonoBehaviour {
 			}
 			
 			//Update user's view
-			object[] gameobjects = GameObject.FindSceneObjectsOfType(typeof(GameObject));
-			foreach (object obj in gameobjects) {
-				GameObject gameobject = (GameObject) obj;
+			foreach (var gameobject in FindObjectsOfType<GameObject>()) {
 				Ball opponent = gameobject.GetComponent<Ball>();
 				if(opponent != null){
 					if(opponent != user) {

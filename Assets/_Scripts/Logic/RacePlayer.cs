@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using Sanicball.Data;
 using Sanicball.Gameplay;
 using SanicballCore;
@@ -50,7 +49,6 @@ namespace Sanicball.Logic
     [Serializable] //This is so the list if race players can be viewed in the inspector
     public class RacePlayer
     {
-		[System.NonSerialized]
         public Ball ball;
         private IBallCamera ballCamera;
         private RaceFinishReport finishReport;
@@ -92,7 +90,7 @@ namespace Sanicball.Logic
         public ControlType CtrlType { get { return ball.CtrlType; } }
         public int Character { get { return ball.CharacterId; } }
         public Transform Transform { get { return ball.transform; } }
-        public float Speed { get { return ball.GetComponent<Rigidbody>().linearVelocity.magnitude; } }
+        public float Speed { get { return ball.GetComponent<Rigidbody>().velocity.magnitude; } }
         public IBallCamera Camera { get { return ballCamera; } }
         public Powerup[] Powerups { get { return ball.powerups; } }
 
@@ -281,8 +279,7 @@ namespace Sanicball.Logic
                 if (LapRecordsEnabled)
                 {
 					CharacterTier tier = ActiveData.Characters[Character].tier;
-                    string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-                    int stage = ActiveData.Stages.Where(a => a.scene.SubObjectName == sceneName).First().id;
+                    int stage = MatchManager.CurrentLevel.id;
 
                     ActiveData.RaceRecords.Add(new RaceRecord(
 						tier,
@@ -307,7 +304,6 @@ namespace Sanicball.Logic
             }
 
             SetNextCheckpoint();
-
             //Set next target node if this is an AI ball
             TrySetAITarget();
         }
@@ -320,7 +316,7 @@ namespace Sanicball.Logic
             }
 
             ball.transform.position = sr.checkpoints[currentCheckpointIndex].GetRespawnPoint() + Vector3.up * ball.transform.localScale.x * 0.5f;
-            ball.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+            ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
             ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             if (ballCamera != null)
             {

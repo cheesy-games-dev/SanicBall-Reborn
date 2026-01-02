@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
-    public class LocalPlayerInfoBox : MonoBehaviour
+    public class LocalPlayerInfoBox : EntityBehaviour
     {
         private string[] lines;
         private int currentLine;
@@ -28,7 +28,7 @@ namespace Sanicball.UI
             DisplayCurrentLine();
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (fadingOut)
             {

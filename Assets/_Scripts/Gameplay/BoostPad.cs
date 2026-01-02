@@ -15,7 +15,7 @@ namespace Sanicball.Gameplay
         }
     }
 
-    public class BoostPad : MonoBehaviour
+    public class BoostPad : EntityBehaviour
     {
         [SerializeField]
         private float speed = 1f;
@@ -35,7 +35,7 @@ namespace Sanicball.Gameplay
             transform.rotation = placement.Rotation;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             //Animate the panel on the boost pad
             offset -= 5f * Time.deltaTime;
@@ -71,9 +71,9 @@ namespace Sanicball.Gameplay
                 Rigidbody rb = other.GetComponent<Rigidbody>();
                 if (rb)
                 {
-                    float speed = rb.linearVelocity.magnitude;
+                    float speed = rb.velocity.magnitude;
                     speed = Mathf.Min(speed + this.speed, speedLimit);
-                    rb.linearVelocity = transform.rotation * Vector3.forward * speed;
+                    rb.velocity = transform.rotation * Vector3.forward * speed;
 
                     AudioSource aSource = GetComponent<AudioSource>();
                     if (aSource)

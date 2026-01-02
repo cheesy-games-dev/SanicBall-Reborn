@@ -2,7 +2,7 @@
 
 namespace Sanicball
 {
-    public class StandardShaderFade : MonoBehaviour
+    public class StandardShaderFade : EntityBehaviour
     {
         private float targetTime;
         private float curTime;
@@ -28,7 +28,7 @@ namespace Sanicball
             //FadeOut(5f);
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (curTime < targetTime)
             {

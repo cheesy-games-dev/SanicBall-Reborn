@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Sanicball.UI
 {
     [RequireComponent(typeof(RawImage))]
-    public class AnimateRawImageOffset : MonoBehaviour
+    public class AnimateRawImageOffset : EntityBehaviour
     {
         public Vector2 speed;
         private Vector2 offset;
@@ -16,7 +16,7 @@ namespace Sanicball.UI
             img = GetComponent<RawImage>();
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             offset += new Vector2(speed.x * Time.deltaTime, speed.y * Time.deltaTime);
             if (offset.x >= 1)

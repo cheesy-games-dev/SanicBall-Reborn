@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Sanicball.UI
 {
     [RequireComponent(typeof(Text))]
-    public class TempTextChange : MonoBehaviour
+    public class TempTextChange : EntityBehaviour
     {
         public float time = 1f;
         private float t = 0f;
@@ -25,7 +25,7 @@ namespace Sanicball.UI
             prevText = text.text;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (t > 0f)
             {

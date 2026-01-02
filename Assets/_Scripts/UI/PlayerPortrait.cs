@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
-    public class PlayerPortrait : MonoBehaviour
+    public class PlayerPortrait : EntityBehaviour
     {
         private const int spacing = 64;
 
@@ -45,7 +45,7 @@ namespace Sanicball.UI
         }
 
         // Update is called once per frame
-        private void Update()
+        public override void OnUpdate()
         {
             targetPosition = TargetPlayer.RaceFinished ? (TargetPlayer.FinishReport.Position) : (TargetPlayer.Position);
             //Position field

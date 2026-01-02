@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ScreenshotTool : MonoBehaviour
+public class ScreenshotTool : EntityBehaviour
 {
     // Use this for initialization
     private void Start()
@@ -8,7 +8,7 @@ public class ScreenshotTool : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    public override void OnUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Sanicball.UI
 {
     [RequireComponent(typeof(RectTransform), typeof(Image))]
-    public class Marker : MonoBehaviour
+    public class Marker : EntityBehaviour
     {
         [SerializeField]
         private Transform target;
@@ -34,7 +34,7 @@ namespace Sanicball.UI
             colorAlpha = image.color.a;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             var cam = Camera.main;
             if (CameraToUse) cam = CameraToUse;

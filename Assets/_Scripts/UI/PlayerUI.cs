@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
-    public class PlayerUI : MonoBehaviour
+    public class PlayerUI : EntityBehaviour
     {
         [SerializeField]
         private RectTransform fieldContainer;
@@ -157,8 +157,7 @@ namespace Sanicball.UI
             if (TargetPlayer.LapRecordsEnabled)
             {
 				CharacterTier tier = ActiveData.Characters[targetPlayer.Character].tier;
-                string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-                int stage = ActiveData.Stages.Where(a => a.scene.SubObjectName == sceneName).First().id;
+                int stage = MatchManager.CurrentLevel.id;
 
                 float time = (float)e.CurrentLapTime.TotalSeconds;
 
@@ -218,7 +217,7 @@ namespace Sanicball.UI
             GetLocalGameObjectByPath("Container/Minimap").SetActive(ActiveData.GameSettings.minimapEnabled);
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (TargetCamera)
             {

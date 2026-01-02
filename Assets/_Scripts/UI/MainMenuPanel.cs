@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
-    public class MainMenuPanel : MonoBehaviour
+    public class MainMenuPanel : EntityBehaviour
     {
         [SerializeField]
         private Text versionNameField = null;
@@ -49,7 +49,7 @@ namespace Sanicball.UI
             taglineField.text = GameVersion.TAGLINE;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if(activePanel != null && !activePanel.isOpen) activePanel = null;
             if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) && FindObjectsOfType<Popup>().Length <= 0)

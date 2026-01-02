@@ -2,7 +2,7 @@
 
 namespace Sanicball
 {
-    public class MenuCameraSizeChange : MonoBehaviour
+    public class MenuCameraSizeChange : EntityBehaviour
     {
         public float time = 0.5f;
         public float menuWidth = 400f;
@@ -20,7 +20,7 @@ namespace Sanicball
         {
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (resized)
             {

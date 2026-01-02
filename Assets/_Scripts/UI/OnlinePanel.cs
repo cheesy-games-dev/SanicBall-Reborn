@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
-    public class OnlinePanel : MonoBehaviour
+    public class OnlinePanel : EntityBehaviour
     {
         public Transform targetServerListContainer;
         public Text errorField;
@@ -58,7 +58,7 @@ namespace Sanicball.UI
             discoveryClient.Start();
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             //Refresh on f5 (pretty nifty)
             if (Input.GetKeyDown(KeyCode.F5))

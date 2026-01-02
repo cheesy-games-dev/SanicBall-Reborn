@@ -12,7 +12,7 @@ using System.IO;
 namespace Sanicball
 {
     [RequireComponent(typeof(AudioSource))]
-    public class MusicPlayer : MonoBehaviour
+    public class MusicPlayer : EntityBehaviour
     {
         //public GUISkin skin;
 
@@ -130,7 +130,7 @@ namespace Sanicball
             raceManager = RaceManager.Instance;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (fadeIn && aSource.volume < 0.5f)
             {

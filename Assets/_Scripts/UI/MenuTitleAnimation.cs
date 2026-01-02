@@ -2,7 +2,7 @@
 
 namespace Sanicball.UI
 {
-    public class MenuTitleAnimation : MonoBehaviour
+    public class MenuTitleAnimation : EntityBehaviour
     {
         public Vector2 positionChange;
         public Vector2 sizeChange;
@@ -27,7 +27,7 @@ namespace Sanicball.UI
             startSize = rectTransform.sizeDelta;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (on && pos < 1f)
             {

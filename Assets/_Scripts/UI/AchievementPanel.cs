@@ -10,8 +10,6 @@ public class AchievementPanel : MonoBehaviour {
     public Transform lockedAchievements;
 
     void Start() {}
-
-    void Update() {}
     public void RefreshAchievements() {
         Achievements.UpdateAchievements();
         foreach(Transform child in unlockedAchievements) {

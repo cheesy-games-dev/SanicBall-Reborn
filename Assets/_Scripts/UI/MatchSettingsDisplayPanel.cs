@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
-    public class MatchSettingsDisplayPanel : MonoBehaviour
+    public class MatchSettingsDisplayPanel : EntityBehaviour
     {
         [Header("Fields")]
         public Text stageName;
@@ -54,7 +54,7 @@ namespace Sanicball.UI
             settingsChangedAnimation.Play();
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (Vector3.Distance(stageLayoutCamera.transform.position, targetStageCamPos) > 0.1f)
             {

@@ -65,9 +65,5 @@ namespace Sanicball.UI
         {
             Instance = this;
         }
-
-        private void Update()
-        {
-        }
     }
 }

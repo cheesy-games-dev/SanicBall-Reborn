@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Sanicball
 {
     [RequireComponent(typeof(AudioSource))]
-    public class MusicMuter : MonoBehaviour
+    public class MusicMuter : EntityBehaviour
     {
         private AudioSource aSource;
 
@@ -14,7 +14,7 @@ namespace Sanicball
             aSource = GetComponent<AudioSource>();
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             aSource.mute = !ActiveData.GameSettings.music;
         }

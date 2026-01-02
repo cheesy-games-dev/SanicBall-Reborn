@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Sanicball.Gameplay
 {
     [RequireComponent(typeof(Camera))]
-    public class LobbyCamera : MonoBehaviour
+    public class LobbyCamera : EntityBehaviour
     {
         public float rotationSpeed;
 
@@ -23,7 +23,7 @@ namespace Sanicball.Gameplay
             startRotation = transform.rotation;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (balls.Count > 0)
             {
@@ -42,9 +42,9 @@ namespace Sanicball.Gameplay
                     //Add position to sum
                     sum += b.transform.position;
 
-                    if (b.Input)
+                    if (b.Input && b.Input is BallControlInput)
                     {
-                        b.Input.LookDirection = transform.rotation;
+                        (b.Input as BallControlInput).LookDirection = transform.rotation;
                     }
                 }
                 //Divide sum by number of balls to get the average position (<3 you vector math)

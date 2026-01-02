@@ -9,7 +9,7 @@ namespace Sanicball.UI
     /// <summary>
     /// Handles active state and input for a local player identified by its control type.
     /// </summary>
-    public class LocalPlayerPanel : MonoBehaviour
+    public class LocalPlayerPanel : EntityBehaviour
     {
         [System.NonSerialized]
         public LocalPlayerManager playerManager;
@@ -45,7 +45,7 @@ namespace Sanicball.UI
             ShowCharacterSelectHelp();
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             //This method handles input from the assigned controltype (if any)
             if (PauseMenu.GamePaused) return; //Short circuit if paused

@@ -18,7 +18,7 @@ namespace Sanicball.UI
         }
     }
 
-    public class CharacterSelectPanel : MonoBehaviour
+    public class CharacterSelectPanel : EntityBehaviour
     {
         private const int COLUMN_COUNT = 4;
 
@@ -126,7 +126,7 @@ namespace Sanicball.UI
                 characterNameLabel.text = selectedChar.name;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             //Find the container's target X to center the selected character
             targetX = entryContainer.sizeDelta.x / 2 - activeEntries[selected].RectTransform.anchoredPosition.x;

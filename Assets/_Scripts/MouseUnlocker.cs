@@ -2,7 +2,7 @@
 
 namespace Sanicball
 {
-    public class MouseUnlocker : MonoBehaviour
+    public class MouseUnlocker : EntityBehaviour
     {
         private void Start()
         {
@@ -13,7 +13,7 @@ namespace Sanicball
             DontDestroyOnLoad(gameObject);
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (Input.GetKeyDown(KeyCode.LeftAlt))
             {

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 namespace Sanicball.UI
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public class SlideCanvasGroup : MonoBehaviour
+    public class SlideCanvasGroup : EntityBehaviour
     {
         public bool isOpen = false;
         public Vector2 closedPosition;
@@ -67,7 +67,7 @@ namespace Sanicball.UI
             UpdatePosition();
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (isOpen && pos < 1f)
             {

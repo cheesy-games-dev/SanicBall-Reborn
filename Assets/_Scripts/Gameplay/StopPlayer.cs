@@ -11,7 +11,7 @@ public class StopPlayer : MonoBehaviour {
 		var bc = other.GetComponent<Ball>();
         if (bc != null && !gradual) {
 			bc.rb.angularVelocity = Vector3.zero;
-			bc.rb.linearVelocity = Vector3.zero;
+			bc.rb.velocity = Vector3.zero;
 		}
 	}
 
@@ -19,7 +19,7 @@ public class StopPlayer : MonoBehaviour {
 		var bc = other.GetComponent<Ball>();
         if (bc != null && gradual){
 			if(bc.rb.angularVelocity.magnitude > 25) bc.rb.angularVelocity *= 1-angularDecrementPercent/100.0f * Time.deltaTime;
-			if(bc.rb.linearVelocity.magnitude > 50) bc.rb.linearVelocity *= 1-velocityDecrementPercent/100.0f * Time.deltaTime;
+			if(bc.rb.velocity.magnitude > 50) bc.rb.velocity *= 1-velocityDecrementPercent/100.0f * Time.deltaTime;
 		}
 	}
 }

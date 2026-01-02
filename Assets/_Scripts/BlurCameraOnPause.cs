@@ -5,7 +5,7 @@ using UnityStandardAssets.ImageEffects;
 namespace Sanicball
 {
     [RequireComponent(typeof(Camera))]
-    public class BlurCameraOnPause : MonoBehaviour
+    public class BlurCameraOnPause : EntityBehaviour
     {
         private const string pauseTag = "Pause";
 
@@ -21,7 +21,7 @@ namespace Sanicball
         {
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (!paused)
             {

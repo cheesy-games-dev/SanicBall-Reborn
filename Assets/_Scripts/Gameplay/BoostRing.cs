@@ -4,12 +4,12 @@ using Sanicball.Gameplay;
 using UnityEngine;
 
 [ExecuteAlways]
-public class BoostRing : MonoBehaviour {
+public class BoostRing : EntityBehaviour {
 	public GameObject target;
 	public float speedMultiplier = 100.0f;
 	private Vector3 vector;
 	
-	private void Update() {
+	public override void OnUpdate() {
 		if(target != null) {
 			vector = (transform.position - target.transform.position).normalized;
 			transform.rotation = Quaternion.FromToRotation(new Vector3(0,0,1), -vector);
@@ -22,7 +22,7 @@ public class BoostRing : MonoBehaviour {
 		var bc = other.GetComponent<Ball>();
 		if (bc != null) {
 			bc.rb.angularVelocity = Vector3.zero;
-			bc.rb.linearVelocity = dir * speedMultiplier;
+			bc.rb.velocity = dir * speedMultiplier;
 			bc.rb.useGravity = false;
 			bc.canMove = false;
 		}

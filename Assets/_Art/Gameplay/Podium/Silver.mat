@@ -12,7 +12,6 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _EMISSION
   - _NORMALMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 7
@@ -125,7 +124,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!114 &5225198994538925717
 MonoBehaviour:
   m_ObjectHideFlags: 11

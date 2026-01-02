@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Sanicball.UI
 {
     [RequireComponent(typeof(Popup))]
-    public class PopupChangeKeybind : MonoBehaviour
+    public class PopupChangeKeybind : EntityBehaviour
     {
         private ControlsPanel panel;
 
@@ -23,7 +23,7 @@ namespace Sanicball.UI
             validKeyCodes = validKeyCodes.Where(a => !a.ToString().Contains("Mouse") && !a.ToString().Contains("Joystick")).ToArray();
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {

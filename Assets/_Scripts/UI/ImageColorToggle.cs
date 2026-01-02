@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Sanicball.UI
 {
     [RequireComponent(typeof(Image))]
-    public class ImageColorToggle : MonoBehaviour
+    public class ImageColorToggle : EntityBehaviour
     {
         private Image image;
 
@@ -25,7 +25,7 @@ namespace Sanicball.UI
             baseColor = image.color;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (On)
             {

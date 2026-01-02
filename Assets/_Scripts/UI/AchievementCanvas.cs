@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
-    public class AchievementCanvas : MonoBehaviour
+    public class AchievementCanvas : EntityBehaviour
     {
         public CanvasGroup panel;
         public Text label;
@@ -18,7 +18,7 @@ namespace Sanicball.UI
         }
 
         // Update is called once per frame
-        void Update()
+        public override void OnUpdate()
         {
             //if (Input.GetKeyDown(KeyCode.P))
             //    Achievements.ClearAchievements();

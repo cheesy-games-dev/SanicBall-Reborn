@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Sanicball
 {
-    public class SpectatorView : MonoBehaviour
+    public class SpectatorView : EntityBehaviour
     {
         [SerializeField]
         private OmniCamera omniCameraPrefab = null;
@@ -57,7 +57,7 @@ namespace Sanicball
         {
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (GameInput.MovementVector(ControlType.Keyboard).x < 0)
             {

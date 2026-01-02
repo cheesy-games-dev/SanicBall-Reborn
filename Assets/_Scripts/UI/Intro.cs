@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
-    public class Intro : MonoBehaviour
+    public class Intro : EntityBehaviour
     {
         public string menuSceneName = "Menu";
 
@@ -22,7 +22,7 @@ namespace Sanicball.UI
             holdImageTimer = imgTime;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (isHoldingImage)
             {

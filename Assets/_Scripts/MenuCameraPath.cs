@@ -7,14 +7,6 @@ namespace Sanicball
         public Transform startPoint;
         public Transform endPoint;
 
-        private void Start()
-        {
-        }
-
-        private void Update()
-        {
-        }
-
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;

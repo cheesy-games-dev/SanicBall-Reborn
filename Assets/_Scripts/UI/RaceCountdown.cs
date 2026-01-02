@@ -4,7 +4,7 @@ using Sanicball.Data;
 
 namespace Sanicball.UI
 {
-    public class RaceCountdown : MonoBehaviour
+    public class RaceCountdown : EntityBehaviour
     {
         private int countdown = 5;
         private float timer = 4f;
@@ -38,7 +38,7 @@ namespace Sanicball.UI
             timer -= time;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             timer -= Time.deltaTime;
             if (timer <= 0)

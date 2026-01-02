@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 namespace Sanicball.UI
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public class Popup : MonoBehaviour
+    public class Popup : EntityBehaviour
     {
         public GameObject firstSelectedOnOpen;
         public Action onClose;
@@ -38,7 +38,7 @@ namespace Sanicball.UI
             }
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (!closing && alpha < 1f)
             {

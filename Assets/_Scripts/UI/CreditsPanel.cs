@@ -27,9 +27,5 @@ namespace Sanicball.UI {
 			}
 			trackList.text = string.Join ("\n", tracksText.ToArray ());
 		}
-		
-		void Update () {
-		
-		}
 	}
 }

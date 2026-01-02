@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Sanicball.UI
 {
-    public class Scoreboard : MonoBehaviour
+    public class Scoreboard : EntityBehaviour
     {
         [SerializeField]
         private ScoreboardEntry entryPrefab = null;
@@ -19,7 +19,7 @@ namespace Sanicball.UI
 
         private List<ScoreboardEntry> activeEntries = new List<ScoreboardEntry>();
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (slideShouldOpen && !slide.isOpen)
             {

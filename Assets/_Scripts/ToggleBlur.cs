@@ -4,7 +4,7 @@ using UnityStandardAssets.ImageEffects;
 namespace Sanicball
 {
     [RequireComponent(typeof(BlurOptimized))]
-    public class ToggleBlur : MonoBehaviour
+    public class ToggleBlur : EntityBehaviour
     {
         public float speed = 1f;
         private bool isOn = false;
@@ -23,7 +23,7 @@ namespace Sanicball
         }
 
         // Update is called once per frame
-        private void Update()
+        public override void OnUpdate()
         {
             if (isOn && t < 1)
             {

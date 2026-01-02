@@ -88,7 +88,7 @@ namespace Sanicball
 			        playerToMove.Ball.rb.useGravity = true;
                     playerToMove.Ball.transform.position = spawnpoint;
                     playerToMove.Ball.transform.rotation = transform.rotation;
-                    playerToMove.Ball.rb.linearVelocity = Random.insideUnitSphere * 0.5f;
+                    playerToMove.Ball.rb.velocity = Random.insideUnitSphere * 0.5f;
                     playerToMove.Ball.rb.angularVelocity = new Vector3(0, Random.Range(-50f, 50f));
                     playerToMove.Ball.CanMove = false;
                     playerToMove.Ball.gameObject.layer = LayerMask.NameToLayer("Racer");

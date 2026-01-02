@@ -10,7 +10,7 @@ namespace Sanicball.UI
     /// <summary>
     /// Tracks used control types for local players and handles them joining/leaving the lobby.
     /// </summary>
-    public class LocalPlayerManager : MonoBehaviour
+    public class LocalPlayerManager : EntityBehaviour
     {
         public LocalPlayerPanel localPlayerPanelPrefab;
         public event System.EventHandler<MatchPlayerEventArgs> LocalPlayerJoined;
@@ -49,7 +49,7 @@ namespace Sanicball.UI
             UpdateHelpText();
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             //This where I check if any control types are trying to join
             if (PauseMenu.GamePaused) return; //Short circuit if the game is paused

@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
 
-public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+public class bl_Joystick : EntityBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
 
     [Header("Settings")]
@@ -72,7 +72,7 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     /// <summary>
     /// 
     /// </summary>
-    void Update()
+    public override void OnUpdate()
     {
         DeathArea = CenterReference.position;
         //If this not free (not touched) then not need continue

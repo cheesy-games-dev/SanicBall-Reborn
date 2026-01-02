@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Sanicball.UI
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public class ToggleCanvasGroup : MonoBehaviour
+    public class ToggleCanvasGroup : EntityBehaviour
     {
         public bool startHidden = false;
         public float time = 1f;
@@ -60,7 +60,7 @@ namespace Sanicball.UI
                 gameObject.SetActive(false);
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (hidden && cg.alpha > 0f)
             {

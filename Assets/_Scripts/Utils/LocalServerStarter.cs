@@ -5,7 +5,7 @@ using SanicballCore.Server;
 using Sanicball.Data;
 using System.Threading;
 
-public class LocalServerStarter : MonoBehaviour {
+public class LocalServerStarter : EntityBehaviour {
 
 	private Thread serverThread;
 	private static CommandQueue commandQueue = new CommandQueue();
@@ -20,7 +20,7 @@ public class LocalServerStarter : MonoBehaviour {
 		}
 	}
 
-    private void Update() {
+    public override void OnUpdate() {
 		if (!serverThread.IsAlive) {
 			Destroy(gameObject);
 		}

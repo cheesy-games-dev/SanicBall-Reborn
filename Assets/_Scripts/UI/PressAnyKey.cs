@@ -3,14 +3,14 @@ using UnityEngine.Events;
 
 namespace Sanicball.UI
 {
-    public class PressAnyKey : MonoBehaviour
+    public class PressAnyKey : EntityBehaviour
     {
         public UnityEvent onAnyKeyPressed;
 
         public float timer = 10f;
         private float spin = 0f;
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (timer > 0f)
             {

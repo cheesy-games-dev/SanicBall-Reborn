@@ -16,7 +16,7 @@ namespace Sanicball.Logic
     /// <summary>
     /// Manages game state - scenes, players, all that jazz
     /// </summary>
-    public class MatchManager : MonoBehaviour
+    public class MatchManager : EntityBehaviour
     {
         #region Events
 
@@ -94,7 +94,7 @@ namespace Sanicball.Logic
         //Timer used for syncing realtime stuff in online
         private float netUpdateTimer = 0;
         private const int NET_UPDATES_PER_SECOND = 40;
-
+        public static StageData CurrentLevel;
         public bool mobilePause;
         public static MatchManager Instance;
         #region Properties
@@ -422,7 +422,7 @@ namespace Sanicball.Logic
             }
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             messenger.UpdateListeners();
 
@@ -528,9 +528,8 @@ namespace Sanicball.Logic
             {
                 p.ReadyToRace = false;
             }
-
+            CurrentLevel = targetStage;
             Addressables.LoadSceneAsync(targetStage.scene);
-            ;
         }
 
         //Check if we were loading the lobby or the race

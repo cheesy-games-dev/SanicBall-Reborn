@@ -5,7 +5,7 @@ using Sanicball.Data;
 
 namespace Sanicball.UI
 {
-    public class WaitingUI : MonoBehaviour
+    public class WaitingUI : EntityBehaviour
     {
         [SerializeField]
         private Text stageNameField;
@@ -20,7 +20,7 @@ namespace Sanicball.UI
             controlsPanel.alpha = ActiveData.GameSettings.showControlsWhileWaiting ? 1 : 0;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (Input.GetKeyDown(KeyCode.F1) || Input.GetKeyDown(KeyCode.JoystickButton6))
             {

@@ -72,9 +72,5 @@ namespace Sanicball.UI
             //Unhide first active slide
             SetSlide(firstActive);
         }
-
-        private void Update()
-        {
-        }
     }
 }

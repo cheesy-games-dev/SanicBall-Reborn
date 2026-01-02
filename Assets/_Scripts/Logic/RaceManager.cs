@@ -18,7 +18,7 @@ namespace Sanicball.Logic
         Finished
     }
 
-    public class RaceManager : MonoBehaviour
+    public class RaceManager : EntityBehaviour
     {
         //Prefabs
         [SerializeField]
@@ -357,7 +357,7 @@ namespace Sanicball.Logic
             }
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             //In offline mode, send a RaceStartMessage once Space (Or A on any joystick) is pressed
             if ((!matchManager.OnlineMode && CurrentState == RaceState.Waiting) && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetMouseButtonDown(0)))

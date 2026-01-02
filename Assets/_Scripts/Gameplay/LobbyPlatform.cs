@@ -2,7 +2,7 @@
 
 namespace Sanicball.Gameplay
 {
-    public class LobbyPlatform : MonoBehaviour
+    public class LobbyPlatform : EntityBehaviour
     {
         public float moveDistance = 2f;
         public float moveTime = 0.5f;
@@ -21,7 +21,7 @@ namespace Sanicball.Gameplay
             basePos = transform.position;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (currentPos > 0f)
             {

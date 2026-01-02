@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace Sanicball {
-	public class ESportMode : MonoBehaviour
+	public class ESportMode : EntityBehaviour
 	{
 		public Texture2D screenOverlay;
 		public Texture2D solidWhite;
@@ -69,7 +69,7 @@ namespace Sanicball {
 			if (dbValue < -160) dbValue = -160; // clamp it to -160dB min
 		}
 
-		private void Update()
+		public override void OnUpdate()
 		{
 			if (Camera.main != null)
 			{

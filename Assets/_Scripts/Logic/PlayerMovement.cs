@@ -36,7 +36,7 @@ namespace Sanicball.Logic
                 player.CtrlType,
                 player.BallObject.transform.position,
                 player.BallObject.transform.rotation,
-                rigidbody.linearVelocity,
+                rigidbody.velocity,
                 rigidbody.angularVelocity,
                 player.BallObject.DirectionVector
                 );

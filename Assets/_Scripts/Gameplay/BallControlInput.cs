@@ -4,7 +4,7 @@ using SanicballCore;
 namespace Sanicball.Gameplay
 {
     [RequireComponent(typeof(Ball))]
-    public class BallControlInput : MonoBehaviour
+    public class BallControlInput : BallControl
     {
         private Ball ball;
         private Vector3 rawDirection;
@@ -18,7 +18,7 @@ namespace Sanicball.Gameplay
             ball = GetComponent<Ball>();
         }
 
-        private void Update()
+        public override void OnUpdate()
         { //Short circuit if paused
             if (UI.PauseMenu.GamePaused)
             {

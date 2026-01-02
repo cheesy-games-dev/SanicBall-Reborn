@@ -27,15 +27,15 @@ namespace Sanicball.Data
         private MatchSettings matchSettings = MatchSettings.CreateDefault();
 
         //This data is set from the editor and remains constant
+        // NOT ANYMORE YAHOO
+
+        [SerializeField]
+        private List<StageData> stages = new();
+
+        [SerializeField]
+        private List<CharacterData> characters = new();
+
         [Header("Static data")]
-        private List<StageData> stages {
-            get; set;
-        } = new();
-
-        private List<CharacterData> characters { 
-            get; set;
-        } = new();
-
         [SerializeField]
         private GameJoltInfo gameJoltInfo;
 
@@ -121,17 +121,13 @@ namespace Sanicball.Data
 
         private void Awake()
         {
-            if (instance == null)
-            {
-                instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
+            if(instance)
             {
                 Destroy(gameObject);
                 return; // dont initialize anything
             }
-
+            instance = this;
+            DontDestroyOnLoad(gameObject);
             LoadAssets();
 
             SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) => {
@@ -147,11 +143,11 @@ namespace Sanicball.Data
             stages.Clear();
             characters.Clear();
             Playlist.Clear();
-            await Addressables.LoadAssetsAsync<AudioClip>("default").Task;
-            await Addressables.LoadAssetsAsync<Texture2D>("default").Task;
-            await Addressables.LoadAssetsAsync<Mesh>("default").Task;
-            await Addressables.LoadAssetsAsync<GameObject>("default").Task;
-            await Addressables.LoadAssetsAsync<Shader>("default").Task;
+            await Addressables.LoadAssetsAsync<AudioClip>("default", null).Task;
+            await Addressables.LoadAssetsAsync<Texture2D>("default", null).Task;
+            await Addressables.LoadAssetsAsync<Mesh>("default", null).Task;
+            await Addressables.LoadAssetsAsync<GameObject>("default", null).Task;
+            await Addressables.LoadAssetsAsync<Shader>("default", null).Task;
             await Addressables.LoadAssetsAsync<DynamicData>("default", OnLoadDynamicData).Task;
         }
 
@@ -196,7 +192,7 @@ namespace Sanicball.Data
 
         private void Load<T>(string filename, ref T output)
         {
-            string fullPath = Application.persistentDataPath + "/" + filename;
+            string fullPath = Path.Combine(Application.persistentDataPath, filename);
             if (File.Exists(fullPath))
             {
                 //Load file contents

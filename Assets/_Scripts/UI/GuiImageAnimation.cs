@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Sanicball.UI
 {
     [RequireComponent(typeof(Image))]
-    public class GuiImageAnimation : MonoBehaviour
+    public class GuiImageAnimation : EntityBehaviour
     {
         public Sprite[] sprites;
         public float switchTime;
@@ -24,7 +24,7 @@ namespace Sanicball.UI
         }
 
         // Update is called once per frame
-        private void Update()
+        public override void OnUpdate()
         {
             timer -= Time.deltaTime;
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class bl_ControllerExample : MonoBehaviour {
+public class bl_ControllerExample : EntityBehaviour {
     public float v, h;
 
     /// <summary>
@@ -12,7 +12,7 @@ public class bl_ControllerExample : MonoBehaviour {
 
     [SerializeField]private float Speed = 5;
 
-    void Update()
+    public override void OnUpdate()
     {
         //Step #2
         //Change Input.GetAxis (or the input that you using) to Joystick.Vertical or Joystick.Horizontal

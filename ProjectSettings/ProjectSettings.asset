@@ -70,6 +70,7 @@ PlayerSettings:
   androidStartInFullscreen: 1
   androidRenderOutsideSafeArea: 1
   androidUseSwappy: 0
+  androidDisplayOptions: 1
   androidBlitType: 0
   androidResizeableActivity: 0
   androidDefaultWindowWidth: 1920
@@ -133,7 +134,6 @@ PlayerSettings:
   switchNVNMaxPublicSamplerIDCount: 0
   switchMaxWorkerMultiple: 8
   switchNVNGraphicsFirmwareMemory: 32
-  switchGraphicsJobsSyncAfterKick: 1
   vulkanNumSwapchainBuffers: 3
   vulkanEnableSetSRGBWrite: 0
   vulkanEnablePreTransform: 0
@@ -255,7 +255,7 @@ PlayerSettings:
   iOSRequireARKit: 0
   iOSAutomaticallyDetectAndAddCapabilities: 1
   appleEnableProMotion: 0
-  shaderPrecisionModel: 0
+  shaderPrecisionModel: 1
   clonedFromGUID: 00000000000000000000000000000000
   templatePackageId: 
   templateDefaultScene: 
@@ -872,12 +872,12 @@ PlayerSettings:
   webGLMemoryLinearGrowthStep: 16
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
+  webGLEnableWebGPU: 0
   webGLPowerPreference: 2
   webGLWebAssemblyTable: 0
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
   webWasm2023: 0
-  webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
     : 
     Standalone: 
@@ -887,7 +887,7 @@ PlayerSettings:
     iPhone: 1
   scriptingBackend:
     Android: 0
-    Standalone: 0
+    Standalone: 1
     WP8: 2
     WebGL: 1
     Windows Store Apps: 2
@@ -1021,4 +1021,3 @@ PlayerSettings:
   insecureHttpOption: 0
   androidVulkanDenyFilterList: []
   androidVulkanAllowFilterList: []
-  androidVulkanDeviceFilterListAsset: {fileID: 0}

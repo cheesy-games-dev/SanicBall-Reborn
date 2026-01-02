@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Sanicball.Gameplay
 {
     [RequireComponent(typeof(Ball))]
-    public class BallControlAI : MonoBehaviour
+    public class BallControlAI : BallControl
     {
         private const float AUTO_RESPAWN_TIME = 6.66f;
         private const float POWERUP_USE_TIME = 10.0f;
@@ -21,15 +21,8 @@ namespace Sanicball.Gameplay
         private float targetPointOffsetChangeTimer = TARGET_OFFSET_CHANGE_TIME;
 
         private float autoRespawnTimer = AUTO_RESPAWN_TIME;
-        private float powerupUseTimer = POWERUP_USE_TIME;
-        private float powerupFailedTimes = 0;
 
         public AINode Target { get { return target; } set { target = value; autoRespawnTimer = AUTO_RESPAWN_TIME; } }
-
-        private void TriggerJump()
-        {
-            ball.Jump(false);
-        }
 
         // Use this for initialization
         private void Start()
@@ -63,12 +56,12 @@ namespace Sanicball.Gameplay
         }
 
         // Update is called once per frame
-        private void Update()
+        public override void OnUpdate()
         {
             ball.Brake = false;
             if (target)
             {
-                Vector3 velocity = GetComponent<Rigidbody>().linearVelocity;
+                Vector3 velocity = GetComponent<Rigidbody>().velocity;
                 Quaternion towardsVelocity = (velocity != Vector3.zero) ? Quaternion.LookRotation(velocity) : Quaternion.LookRotation(target.transform.position);
 
                 Ray ray = new Ray(transform.position, towardsVelocity * Vector3.forward);
@@ -86,8 +79,6 @@ namespace Sanicball.Gameplay
                 Vector3 targetPoint = target.transform.position + targetPointOffsetCurrent;
                 Quaternion directionToGo = Quaternion.LookRotation(point - targetPoint);
                 ball.DirectionVector = directionToGo * Vector3.left;
-
-                Debug.DrawLine(point, targetPoint, Color.white);
             }
 
             if (ball.CanMove)
@@ -124,6 +115,13 @@ namespace Sanicball.Gameplay
             }
         }
 
+#if UNITY_EDITOR
+        private void OnDrawGizmos() {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, target.transform.position);
+            Gizmos.DrawSphere(target.transform.position, 1);
+        }
+#endif
         public void OnTriggerEnter(Collider other)
         {
             AINode node = other.GetComponent<AINode>();

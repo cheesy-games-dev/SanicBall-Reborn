@@ -3,7 +3,7 @@ using System.Collections;
 using Sanicball.Gameplay;
 
 namespace Sanicball {
-	public class SpeedFire : MonoBehaviour {
+	public class SpeedFire : EntityBehaviour {
 		private Ball ball;
 		Rigidbody rb;
 		MeshRenderer mr;
@@ -25,24 +25,24 @@ namespace Sanicball {
 		}
 		
 		// Update is called once per frame
-		void Update () {
+		public override void OnUpdate () {
 			if (!ball) {
 				Destroy(gameObject);
 				return;
 			}
 
-			float power = Mathf.InverseLerp(120, 500, rb.linearVelocity.magnitude);
+			float power = Mathf.InverseLerp(120, 500, rb.velocity.magnitude);
 			power = power * power;
 
 			rot += Time.deltaTime * 1000;
 			transform.position = ball.transform.position;
-			Vector3 look = rb.linearVelocity;
+			Vector3 look = rb.velocity;
 			if (look == Vector3.zero)
 			{
 				look = Vector3.forward;
 			}
 			Quaternion q = Quaternion.LookRotation(look);
-			q = Quaternion.AngleAxis(Random.Range(0,360), rb.linearVelocity) * q;
+			q = Quaternion.AngleAxis(Random.Range(0,360), rb.velocity) * q;
 			transform.rotation = q;
 
 			mr.material.color = new Color(1,1,1,power);

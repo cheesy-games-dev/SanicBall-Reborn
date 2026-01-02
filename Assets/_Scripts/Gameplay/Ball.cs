@@ -7,7 +7,6 @@ using Sanicball.Logic;
 using SanicballCore;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 using Sanicball.Extra;
 
 namespace Sanicball.Gameplay
@@ -79,7 +78,7 @@ namespace Sanicball.Gameplay
     }
 
     [RequireComponent(typeof(Rigidbody))]
-    public class Ball : MonoBehaviour
+    public class Ball : EntityBehaviour
     {
         //These are set using Init() when balls are instantiated
         //But you can set them from the editor to quickly test out a track
@@ -143,7 +142,6 @@ namespace Sanicball.Gameplay
 		
 		public bool canMultiJump = false;
 		public int extraJumps = 0;
-		private int jumpsRemaining = 0;
 
         public IBallCamera myCamera;
 
@@ -153,7 +151,6 @@ namespace Sanicball.Gameplay
         private int materialColorIndex = 0;
         private float materialCycleTimer;
 
-        private Vector3 slowFallInitialSpeed = new Vector3();
         private bool usedSlowFall = false;
 
         public GameObject joystickCanvas;
@@ -164,9 +161,8 @@ namespace Sanicball.Gameplay
         //public bool gravity;
 
         //Component caches
-		[System.NonSerialized]
         public Rigidbody rb;
-        public BallControlInput Input { get { return input; } }
+        public BallControl Input { get { return input; } }
 
         //Events
         public event System.EventHandler<CheckpointPassArgs> CheckpointPassed;
@@ -186,9 +182,9 @@ namespace Sanicball.Gameplay
             }
             if(canMove) { //possible movement section
                 if (grounded && !hold) {
-                    float scalar = Vector3.Dot((-gravDir).normalized, rb.linearVelocity.normalized);
+                    float scalar = Vector3.Dot((-gravDir).normalized, rb.velocity.normalized);
                     if (scalar < 0)
-                        rb.linearVelocity -= (-gravDir) * scalar * rb.linearVelocity.magnitude;
+                        rb.velocity -= (-gravDir) * scalar * rb.velocity.magnitude;
                     //if(rb.velocity.y < 0) rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
 
@@ -269,6 +265,7 @@ namespace Sanicball.Gameplay
 
         private void Start()
         {
+            rb = GetComponentInChildren<Rigidbody>();
             Achievements.UpdateAchievements();
             
             Up = Vector3.up;
@@ -483,7 +480,7 @@ namespace Sanicball.Gameplay
             }
         }
 
-        private void FixedUpdate()
+        public override void OnFixedUpdate()
         {
             if (GetComponents<IAbilityUpdate>().Length > 0) {
                 GetComponents<IAbilityUpdate>().ToList().ForEach(c => c.FixedUpdate(this));
@@ -562,12 +559,11 @@ namespace Sanicball.Gameplay
 
             if (characterStats.slowFall && !GameInput.IsJumping(ctrlType, false)) {
                 canMove = true;
-                slowFallInitialSpeed = Vector3.zero;
             }
             if (grounded && usedSlowFall) usedSlowFall = false;
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (GetComponents<IAbilityUpdate>().Length > 0) {
                 GetComponents<IAbilityUpdate>().ToList().ForEach(c => c.Update(this));
@@ -576,7 +572,7 @@ namespace Sanicball.Gameplay
             if (grounded)
             {
                 float rollSpd = Mathf.Clamp(rb.angularVelocity.magnitude / 230, 0, 16);
-                float vel = (-128f + rb.linearVelocity.magnitude) / 256; //Start at 128 fph, end at 256
+                float vel = (-128f + rb.velocity.magnitude) / 256; //Start at 128 fph, end at 256
 
                 vel = Mathf.Clamp(vel, 0, 1);
                 if (sounds.Roll != null)

@@ -26,7 +26,6 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DETAIL_MULX2
-  - _EMISSION
   m_InvalidKeywords: []
   m_LightmapFlags: 7
   m_EnableInstancingVariants: 0
@@ -140,4 +139,3 @@ Material:
     - _EmissionColorUI: {r: 1, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1

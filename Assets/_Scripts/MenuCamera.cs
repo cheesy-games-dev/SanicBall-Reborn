@@ -2,7 +2,7 @@
 
 namespace Sanicball
 {
-    public class MenuCamera : MonoBehaviour
+    public class MenuCamera : EntityBehaviour
     {
         public bool fadingEnabled = true;
         public bool movingEnabled = true;
@@ -27,7 +27,7 @@ namespace Sanicball
         }
 
         // Update is called once per frame
-        private void Update()
+        public override void OnUpdate()
         {
             if (!movingEnabled) return;
             float dist = Vector3.Distance(transform.position, paths[currentPath].endPoint.position);

@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sanicball.Gameplay;
 
-public class SomeGravDirTest : MonoBehaviour
+public class SomeGravDirTest : EntityBehaviour
 {
     public Ball ball;
-    void Start() {
-        
-    }
 
-    void Update(){
+    public override void OnUpdate(){
         var gravityAngleY = Vector3.Angle(ball.gravDir, Vector3.up);
         var gravityAngleX = Vector3.Angle(ball.gravDir, Vector3.right) - 90;
         var gravityAngleZ = Vector3.Angle(ball.gravDir, Vector3.forward) - 90;

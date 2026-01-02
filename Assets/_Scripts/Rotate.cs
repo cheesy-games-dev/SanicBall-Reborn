@@ -2,7 +2,7 @@
 
 namespace Sanicball
 {
-    public class Rotate : MonoBehaviour
+    public class Rotate : EntityBehaviour
     {
         public Vector3 angle;
 
@@ -12,7 +12,7 @@ namespace Sanicball
         }
 
         // Update is called once per frame
-        private void Update()
+        public override void OnUpdate()
         {
             transform.Rotate(angle * Time.deltaTime * 10);
         }

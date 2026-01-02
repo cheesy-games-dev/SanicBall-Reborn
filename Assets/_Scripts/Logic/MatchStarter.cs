@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Sanicball.Logic
 {
-    public class MatchStarter : MonoBehaviour
+    public class MatchStarter : EntityBehaviour
     {
         public static MatchStarter Instance;
         public const string APP_ID = "Sanicball";
@@ -24,7 +24,7 @@ namespace Sanicball.Logic
         private void Awake() {
             Instance = this;
         }
-        private void Update()
+        public override void OnUpdate()
         {
             if (joiningClient != null)
             {

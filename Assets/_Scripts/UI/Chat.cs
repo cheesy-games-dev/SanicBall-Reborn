@@ -18,7 +18,7 @@ namespace Sanicball.UI
     }
 
     [RequireComponent(typeof(CanvasGroup))]
-    public class Chat : MonoBehaviour
+    public class Chat : EntityBehaviour
     {
         private const float MAX_VISIBLE_TIME = 4f;
         private const float FADE_TIME = 0.2f;
@@ -49,7 +49,7 @@ namespace Sanicball.UI
             canvasGroup.alpha = 0;
         }
 
-        public void Update()
+        public override void OnUpdate()
         {
             EventSystem es = EventSystem.current;
             if (GameInput.IsOpeningChat())
@@ -84,7 +84,7 @@ namespace Sanicball.UI
             }
         }
 
-        public void LateUpdate()
+        public override void OnLateUpdate()
         {
             if (shouldEnableInput)
             {

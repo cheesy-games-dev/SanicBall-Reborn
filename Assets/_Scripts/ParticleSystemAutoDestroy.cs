@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Sanicball
 {
     [RequireComponent(typeof(ParticleSystem))]
-    public class ParticleSystemAutoDestroy : MonoBehaviour
+    public class ParticleSystemAutoDestroy : EntityBehaviour
     {
         private ParticleSystem ps;
 
@@ -13,7 +13,7 @@ namespace Sanicball
             ps = GetComponent<ParticleSystem>();
         }
 
-        public void Update()
+        public override void OnUpdate()
         {
             if (ps)
             {

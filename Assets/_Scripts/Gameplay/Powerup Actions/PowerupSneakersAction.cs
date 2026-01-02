@@ -9,7 +9,7 @@ public class PowerupSneakersAction : MonoBehaviour {
 		GameObject gameobj = data.input;
 		var user = gameobj.GetComponent<Ball>();
 		if(user != null){
-			user.rb.linearVelocity *= 2.5f;
+			user.rb.velocity *= 2.5f;
 			data.output = true;
 			return;
 		}

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Sanicball.UI
 {
-    public class LobbyStatusBar : MonoBehaviour
+    public class LobbyStatusBar : EntityBehaviour
     {
         [SerializeField]
         private Text leftText = null;
@@ -72,7 +72,7 @@ namespace Sanicball.UI
             }
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             UpdateText();
         }

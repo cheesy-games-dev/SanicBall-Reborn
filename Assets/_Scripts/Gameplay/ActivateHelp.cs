@@ -5,7 +5,7 @@ using Sanicball.Logic;
 using Sanicball.Gameplay;
 using UnityEngine;
 
-public class ActivateHelp : MonoBehaviour {
+public class ActivateHelp : EntityBehaviour {
 	[SerializeField]
 	public int helpTimeMinutes = 1;
 	public int helpTimeSeconds = 0;
@@ -29,12 +29,10 @@ public class ActivateHelp : MonoBehaviour {
 		manager = GameObject.FindObjectOfType(typeof(RaceManager)) as RaceManager;
 	}
 	
-	void Update() {
+	public override void OnUpdate() {
 		if(manager != null) {
 			if(manager.raceTimer >= helpTimeMinutes*60 + helpTimeSeconds && !done) {
-				object[] gameobjects = GameObject.FindObjectsOfTypeAll(typeof(GameObject));
-				foreach (object obj in gameobjects) {
-					GameObject gameobject = (GameObject) obj;
+				foreach (var gameobject in GameObject.FindObjectsOfType<GameObject>()) {
 					foreach (GameObject toActivate in objectsToActivate) {
 						if(gameobject == toActivate && !gameobject.activeSelf) {
 							gameobject.SetActive(true);

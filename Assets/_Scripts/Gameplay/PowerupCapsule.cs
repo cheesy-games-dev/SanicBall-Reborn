@@ -4,7 +4,7 @@ using Sanicball.Gameplay;
 using Sanicball.Logic;
 using UnityEngine;
 
-public class PowerupCapsule : MonoBehaviour {
+public class PowerupCapsule : EntityBehaviour {
 	private float pickedUpTimer = 0;
 	private float reappearDelay = 5.0f;
 	private bool pickedUp = false;
@@ -46,7 +46,7 @@ public class PowerupCapsule : MonoBehaviour {
 		}
 	}
 	
-	private void Update() {
+	public override void OnUpdate() {
 		if(pickedUp){
 			pickedUpTimer += Time.deltaTime;
 			if(pickedUpTimer > reappearDelay) {

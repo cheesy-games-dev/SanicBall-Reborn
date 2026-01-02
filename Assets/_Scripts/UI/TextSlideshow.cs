@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Sanicball.UI
 {
     [RequireComponent(typeof(Text))]
-    public class TextSlideshow : MonoBehaviour
+    public class TextSlideshow : EntityBehaviour
     {
         private Text t;
 
@@ -28,7 +28,7 @@ namespace Sanicball.UI
             t.text = lines[currentLine];
         }
 
-        private void Update()
+        public override void OnUpdate()
         {
             if (PauseMenu.GamePaused) return; //Do nothing when paused to prevent text changing annoyingly below the Match Settings window.
 

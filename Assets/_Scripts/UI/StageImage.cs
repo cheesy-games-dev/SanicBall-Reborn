@@ -6,7 +6,7 @@ namespace Sanicball.UI
 {
     [RequireComponent(typeof(LayoutElement))]
     [RequireComponent(typeof(Button))]
-    public class StageImage : MonoBehaviour, ISelectHandler, IDeselectHandler
+    public class StageImage : EntityBehaviour, ISelectHandler, IDeselectHandler
     {
         public StageSelection stageSelectionObject;
 
@@ -53,7 +53,7 @@ namespace Sanicball.UI
         }
 
         // Update is called once per frame
-        private void Update()
+        public override void OnUpdate()
         {
             float targetWidth = selected ? baseWidth * selectedScale : baseWidth * deselectedScale;
             float targetHeight = selected ? baseHeight * selectedScale : baseHeight * deselectedScale;

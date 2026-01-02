@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sanicball
 {
-    public class WaitingCamera : MonoBehaviour
+    public class WaitingCamera : EntityBehaviour
     {
         private const float switchTime = 8f;
         private const float moveSpeed = 10f;
@@ -26,7 +26,7 @@ namespace Sanicball
         }
 
         // Update is called once per frame
-        private void Update()
+        public override void OnUpdate()
         {
             timer -= Time.deltaTime;
 

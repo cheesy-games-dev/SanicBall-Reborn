@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //Was supposed to be used with race overviews
-public class RotateWithMouse : MonoBehaviour
+public class RotateWithMouse : EntityBehaviour
 {
     public Vector3 baseRotation;
     public float xIntensity = 1f;
@@ -17,7 +17,7 @@ public class RotateWithMouse : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    public override void OnUpdate()
     {
         float x = Mathf.Lerp(-1f, 1f, Input.mousePosition.x / Screen.width);
         float y = Mathf.Lerp(-1f, 1f, Input.mousePosition.y / Screen.height);

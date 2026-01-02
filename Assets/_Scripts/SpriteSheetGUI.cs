@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Sanicball
 {
-    public class SpriteSheetGUI : MonoBehaviour
+    public class SpriteSheetGUI : EntityBehaviour
     {
         //vars for the whole sheet
         public int colCount = 4;
@@ -38,7 +38,7 @@ namespace Sanicball
         }
 
         //Update
-        private void Update()
+        public override void OnUpdate()
         {
             SetSpriteAnimation(colCount, rowCount, rowNumber, colNumber, totalCells, fps);
         }
